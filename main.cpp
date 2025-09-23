@@ -4,28 +4,60 @@
 #include <fstream>
 #include <Windows.h>
 #include <string>
+#include <thread>
 
 using namespace std;
 
-int ifPrime(int n) {
-    for (int i = 2; i <= std::sqrt(n); i++) {
+bool ifPrime(long long& n) {
+    double sq{ sqrt(n) };
+    for (long long i = 2; i <= sq; i++) {
         if (n % i == 0) return false;
     }
     return true;
 }
 
-bool fileCheck() {
+bool fileExists() {
     ifstream file("primeNumbers.txt");
-    return !file.is_open();
+    return file.is_open();
 }
+
+/*
+    y - letter delay    [ms]
+    z - space delay     [ms]
+    color - enter a ansi code
+
+*/
+void write(const string& x, int y = 40, int z = 40, int color = 0) {
+    if (color != 0) {
+        cout << "\033[" << color << "m";
+        for (int i{ 0 }; i < x.length(); i++) {
+            cout << x.at(i);
+            this_thread::sleep_for(chrono::milliseconds(y));
+            if (x.at(i) == ' ') {
+                this_thread::sleep_for(chrono::milliseconds(z));
+            }
+        }
+        cout << "\033[0m";
+    }
+    else {
+        for (int i{ 0 }; i < x.length(); i++) {
+            cout << x.at(i);
+            this_thread::sleep_for(chrono::microseconds(y));
+            if (x.at(i) == ' ') {
+                this_thread::sleep_for(chrono::microseconds(z));
+            }
+        }
+    }
+}
+
 
 int main()
 {
-    if (!fileCheck()) {
-        cout << "\033[31m" << "error | delete file \"primeNumbers.txt\" to continiue" << "\033[0m";
-        cin.ignore();
+    if (fileExists()) {
+        cout << "\033[31m" << "error | delete file \"primeNumbers.txt\" to continiue" << "\033[0m" << endl;
+        cout << "\033[32m" << "-- press enter to automatically delete the file --" << "\033[0m";
         cin.get();
-        return 0;
+        remove("primeNumbers.txt");
     }
     while (true) {
         system("cls");
@@ -33,6 +65,8 @@ int main()
 
         vector<int> primeNumbers;
         int limit = 0;
+
+        write("==== Prime Number Generator ====", 20, 50, 32); cout << endl;
         cout << "enter a limit >> ";
         if (!(cin >> limit)) {
             cin.clear();
@@ -41,12 +75,14 @@ int main()
             cin.get();
             continue;
         }
-        for (int i{ 1 }; i <= limit; i = i + 2) {
+        if (limit >= 2) {
+            primeNumbers.push_back(2);
+        }
+        for (long long i{ 3 }; i <= limit; i = i + 2) {   //starting from 3 and adding 2 to skip even numbers
             if (ifPrime(i)) {
                 primeNumbers.push_back(i);
             }
         }
-        primeNumbers.erase(primeNumbers.begin() + 0); // deleting first letter in the file
 
 
 
@@ -59,14 +95,17 @@ int main()
         cout << "\033[32m" << "numbers were saved in \"primeNumbers.txt\"" << "\033[0m" << endl;
         cout << "-----------------------------------------" << endl;
         cout << "to display them in the consoletype \"show\"" << endl;
-        cout << "to exit program type \"exit\"" << endl;
+        cout << "to exit program type \"exit\"" << endl << endl;
+        cout << "--------------- ";
+        cout << "limit = " << "\033[32m" << limit << "\033[0m";
+        cout << " ---------------" << endl;
         cout << ">> ";
         cin >> answer;
         if (answer == "show") {
             cout << endl;
             string line;
             while (getline(file, line)) {
-                cout << "\033[32m" << line << " " << "\033[0m";
+                write(line, 0, 1);
             }
         }
         else {
