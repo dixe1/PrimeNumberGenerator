@@ -2,10 +2,8 @@
 #include <cmath>
 #include <vector>
 #include <fstream>
-#include <Windows.h>
 #include <string>
-#include <thread>
-
+#include "console_writer.h"
 using namespace std;
 
 bool ifPrime(long long& n) {
@@ -19,35 +17,6 @@ bool ifPrime(long long& n) {
 bool fileExists() {
     ifstream file("primeNumbers.txt");
     return file.is_open();
-}
-
-/*
-    y - letter delay    [ms]
-    z - space delay     [ms]
-    color - enter a ansi code
-
-*/
-void write(const string& x, int y = 40, int z = 40, int color = 0) {
-    if (color != 0) {
-        cout << "\033[" << color << "m";
-        for (int i{ 0 }; i < x.length(); i++) {
-            cout << x.at(i);
-            this_thread::sleep_for(chrono::milliseconds(y));
-            if (x.at(i) == ' ') {
-                this_thread::sleep_for(chrono::milliseconds(z));
-            }
-        }
-        cout << "\033[0m";
-    }
-    else {
-        for (int i{ 0 }; i < x.length(); i++) {
-            cout << x.at(i);
-            this_thread::sleep_for(chrono::microseconds(y));
-            if (x.at(i) == ' ') {
-                this_thread::sleep_for(chrono::microseconds(z));
-            }
-        }
-    }
 }
 
 
