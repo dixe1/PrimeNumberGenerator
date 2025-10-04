@@ -1,23 +1,12 @@
-#include <iostream>
-#include <cmath>
-#include <vector>
-#include <fstream>
-#include <string>
 #include "console_writer.h"
+#include "fileExists.h"
+#include "ifPrime.h"
+#include <cmath>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
 using namespace std;
-
-bool ifPrime(long long& n) {
-    double sq{ sqrt(n) };
-    for (long long i = 2; i <= sq; i++) {
-        if (n % i == 0) return false;
-    }
-    return true;
-}
-
-bool fileExists() {
-    ifstream file("primeNumbers.txt");
-    return file.is_open();
-}
 
 
 int main()
