@@ -1,8 +1,8 @@
-#include "console_writer.h"
-#include <chrono>
 #include <iostream>
 #include <string>
 #include <thread>
+#include <chrono>
+#include "console_writer.h"
 
 /*
     text -> The text to print
@@ -12,7 +12,7 @@
 */
 
 
-void write(const std::string& text, int delayCh, int delayS, int color) {
+void write(const std::string& text, int delayCh = 20, int delayS = 20, int color = 0) {
     if (color != 0) {
         std::cout << "\033[" << color << "m";
         for (size_t i = 0; i < text.length(); i++) {
