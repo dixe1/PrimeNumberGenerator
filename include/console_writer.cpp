@@ -12,7 +12,7 @@
 */
 
 
-void write(const std::string& text, int delayCh = 20, int delayS = 20, int color = 0) {
+void write(const std::string& text, int delayCh, int delayS, int color) {
     if (color != 0) {
         std::cout << "\033[" << color << "m";
         for (size_t i = 0; i < text.length(); i++) {
