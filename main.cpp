@@ -24,7 +24,7 @@ int main()
         vector<int> primeNumbers;
         int limit = 0;
 
-        write("==== Prime Number Generator ====", 20, 50, 32); cout << endl;
+        write("==== Prime Number Generator ====", 32, 20, 50); cout << endl;
         cout << "enter a limit >> ";
         if (!(cin >> limit)) {
             cin.clear();
@@ -63,7 +63,7 @@ int main()
             cout << endl;
             string line;
             while (getline(file, line)) {
-                write(line, 0, 1);
+                write(line, 0, 0, 1);
             }
         }
         else {
