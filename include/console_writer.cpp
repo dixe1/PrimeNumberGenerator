@@ -6,13 +6,13 @@
 
 /*
     text -> The text to print
+    color -> ANSI color code to use (if not provided, text will be printed without color)
     delayCh -> Delay between characters
     delayS -> Additional delay after spaces
-    color -> ANSI color code to use (0 = no color)
 */
 
 
-void write(const std::string& text, int delayCh, int delayS, int color) {
+void write(const std::string& text, int color, int delayCh, int delayS) {
     if (color != 0) {
         std::cout << "\033[" << color << "m";
         for (size_t i = 0; i < text.length(); i++) {
