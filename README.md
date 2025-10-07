@@ -18,6 +18,7 @@ A simple C++ terminal program that generates prime numbers up to a user-defined 
 ## Custom Library
 
 This project contains a small custom library (`console_writer`) for printing text with optional color and delays.
+[console_writer](https://github.com/dixe1/UsefulFunctions/tree/main/console_writer)
 
 ---
 MIT License © 2025 dixe
