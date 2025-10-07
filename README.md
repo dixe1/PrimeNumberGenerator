@@ -15,5 +15,9 @@ A simple C++ terminal program that generates prime numbers up to a user-defined 
 - Colorful terminal interface with optional text animations.
 - Automatic handling of existing output files.
 
+## Custom Library
+
+This project contains a small custom library (`console_writer`) for printing text with optional color and delays.
+
 ---
 MIT License © 2025 dixe
