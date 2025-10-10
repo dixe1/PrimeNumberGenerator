@@ -1,4 +1,5 @@
-#include "console_writer.h"
+#include "console_writer.h"    // Library from: https://github.com/dixe1/UsefulFunctions/tree/main/console_writer
+
 #include "fileExists.h"
 #include "ifPrime.h"
 #include <cmath>
@@ -74,4 +75,5 @@ int main()
         file.close();
         return 0;
     }
+
 }
