@@ -27,6 +27,3 @@ This project contains a small custom library [console_writer](https://github.com
 - Windows 10/11
 - 64-bit
 - C++17 compiler
-  
----
-MIT License © 2025 dixe
