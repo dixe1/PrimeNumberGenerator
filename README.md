@@ -7,6 +7,10 @@ A simple C++ terminal program that generates prime numbers up to a user-defined 
 
 ---
 
+![Main menu](images/1.png)
+![menu showing generated prime numbers](images/2.png)
+
+
 ## Features
 
 - Generate all prime numbers up to a specified limit.
