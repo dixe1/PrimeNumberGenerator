@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(ToDoList LANGUAGES CXX)
+project(PrimeNumberGenerator LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -10,7 +10,8 @@ file(GLOB SRC_FILES
     include/*.cpp
 )
 
-add_executable(todolist
+add_executable(PrimeNumberGenerator
     main.cpp
     ${SRC_FILES}
+
 )
