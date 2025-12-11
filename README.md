@@ -23,7 +23,8 @@ A simple C++ terminal program that generates prime numbers up to a user-defined 
 
 This project contains a small custom library [console_writer](https://github.com/dixe1/UsefulFunctions/tree/main/console_writer) for printing text with optional color and delays.
 
-## System Requirements
-- Windows 10/11
-- 64-bit
+## Requirements
+
+- CMake 3.25 or newer
 - C++17 compiler
+- Windows 10/11
