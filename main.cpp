@@ -8,12 +8,8 @@ int main()
 	// Getting system information
 	SystemInfo info = SystemInfoProvider::get();
 
-	/*
-	* Example usage for Logger
-	* 
-	Logger::INFO("info message");
-	Logger::WARNING("warning message");
-	Logger::ERROR("error message");
-	*/
+	// Enable logging usage
+	Logger::consoleLoggingEnabled = true;
+	Logger::INFO("Application started with " + std::to_string(info.threads) + " threads available.");
 
 }

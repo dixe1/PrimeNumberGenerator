@@ -10,6 +10,8 @@ enum class LogLevel
 
 namespace Logger
 {
+	inline bool consoleLoggingEnabled = false;
+
 	void log(const std::string&, LogLevel);
 
 	void INFO(const std::string&);
