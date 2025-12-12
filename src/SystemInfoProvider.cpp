@@ -1,6 +1,7 @@
+#include "Logger.h"
 #include "SystemInfoProvider.h"
-#include <thread>
 #include <iostream>
+#include <thread>
 
 namespace SystemInfoProvider
 {
@@ -10,7 +11,7 @@ namespace SystemInfoProvider
 		if(threads <= 0)
 		{
 			threads = 1; // set to 1 if unable to detect
-			std::cerr << "Warning: Unable to detect number of CPU threads, defaulting to 1." << std::endl;
+			Logger::WARNING("Unable to detect number of hardware threads, defaulting to 1.");
 		}
 
 		return { threads };
