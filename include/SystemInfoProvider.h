@@ -16,5 +16,5 @@ struct SystemInfo
 namespace SystemInfoProvider
 {
 	SystemInfo get();
-	std::string getOSNameString(OSName);
+	std::string getOSNameString(const OSName&);
 } // namespace SystemInfoProvider

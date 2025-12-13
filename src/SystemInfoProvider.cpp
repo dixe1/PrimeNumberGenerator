@@ -26,7 +26,7 @@ namespace SystemInfoProvider
 		return SystemInfo{ threads,os };
 	}
 
-	std::string getOSNameString(OSName os)
+	std::string getOSNameString(const OSName& os)
 	{
 		switch (os)
 		{

@@ -9,19 +9,20 @@
 namespace Logger
 {
 
-	static void log(const std::string& message, LogLevel level = LogLevel::INFO)
+	static void log(const std::string& message, const LogLevel& level = LogLevel::INFO)
 	{
 		// Ensure the logs directory and file exists
 		std::filesystem::path folderPath = "logs";
 		if (!std::filesystem::exists(folderPath)) std::filesystem::create_directory(folderPath);
 		std::ofstream logFile(folderPath / "application.log", std::ios::app);
 
-		logFile << std::endl;
-
 		// Get current time
 		std::time_t t = std::time(nullptr);
 		std::tm* now = std::localtime(&t);
 
+		logFile << std::endl;
+
+		// Stupid long switch case for logging levels
 		switch (level)
 		{
 		case LogLevel::INFO:

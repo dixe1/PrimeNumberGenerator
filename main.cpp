@@ -1,5 +1,4 @@
-#include "Logger.h"
-#include "SystemInfoProvider.h"
+#include "Includes.h"
 
 // cpp 17
 
@@ -8,8 +7,10 @@ int main()
 	// Getting system information
 	SystemInfo info = SystemInfoProvider::get();
 
-	// Enable logging usage
+	// Example usage of Logger and SystemInfoProvider
 	Logger::consoleLoggingEnabled = true;
 	Logger::INFO("Application started with " + std::to_string(info.threads) + " threads available.");
 	Logger::INFO("Operating System: " + SystemInfoProvider::getOSNameString(info.osName));
 }
+
+//Template from: https://github.com/dixe1/cpp-project-template
