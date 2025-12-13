@@ -45,4 +45,5 @@ int main()
 {
   SystemInfo info = SystemInfoProvider::get();
   std::cout << "CPU threads detected: " << info.threads << "\n";
+  std::cout << "Operating System: " << SystemInfoProvider::getOSNameString(info.osName) << "\n";
 }
