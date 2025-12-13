@@ -13,4 +13,4 @@ int main()
 	Logger::INFO("Operating System: " + SystemInfoProvider::getOSNameString(info.osName));
 }
 
-//Template from: https://github.com/dixe1/cpp-project-template
+// Template from: https://github.com/dixe1/cpp-project-template
