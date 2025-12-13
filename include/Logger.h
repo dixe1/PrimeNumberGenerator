@@ -5,7 +5,8 @@ enum class LogLevel
 {
 	INFO,
 	WARNING,
-	ERROR
+	ERROR,
+	DEBUG
 };
 
 namespace Logger
@@ -15,4 +16,5 @@ namespace Logger
 	void INFO(const std::string&);
 	void WARNING(const std::string&);
 	void ERROR(const std::string&);
+	void DEBUG(const std::string&);
 }// namespace Logger

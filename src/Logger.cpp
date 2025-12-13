@@ -45,10 +45,18 @@ namespace Logger
 			// Log to file
 			logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << "[ERROR]: " << message << std::endl;
 			break;
+		case LogLevel::DEBUG:
+			// Log to console
+			if (consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << "[DEBUG]: " << message << std::endl;
+
+			// Log to file
+			logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << "[DEBUG]: " << message << std::endl;
+			break;
 		}
 	}
 
 	void INFO(const std::string& message) { log(message, LogLevel::INFO); }
 	void WARNING(const std::string& message) { log(message, LogLevel::WARNING); }
 	void ERROR(const std::string& message) { log(message, LogLevel::ERROR); }
+	void DEBUG(const std::string& message) { log(message, LogLevel::DEBUG); }
 }// namespace Logger

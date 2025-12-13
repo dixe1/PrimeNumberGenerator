@@ -11,5 +11,5 @@ int main()
 	// Enable logging usage
 	Logger::consoleLoggingEnabled = true;
 	Logger::INFO("Application started with " + std::to_string(info.threads) + " threads available.");
-
+	Logger::INFO("Operating System: " + SystemInfoProvider::getOSNameString(info.osName));
 }
