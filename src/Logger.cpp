@@ -9,7 +9,7 @@
 namespace Logger
 {
 
-	void log(const std::string& message, LogLevel level = LogLevel::INFO)
+	static void log(const std::string& message, LogLevel level = LogLevel::INFO)
 	{
 		// Ensure the logs directory and file exists
 		std::filesystem::path folderPath = "logs";
