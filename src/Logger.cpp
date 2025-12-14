@@ -23,6 +23,7 @@ namespace Logger
 		logFile << std::endl;
 
 		// Stupid long switch case for logging levels
+		// For now it will do
 		switch (level)
 		{
 		case LogLevel::INFO:
