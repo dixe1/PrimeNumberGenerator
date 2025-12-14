@@ -3,6 +3,12 @@ A C++17 project template with a Logger module and SystemInfoProvider for quickly
 
 ## Build
 
+
+### For Visual Studio 2026:
+```bash
+cmake -G "Visual Studio 18 2026" -A x64 . -B build
+```
+
 ### For Visual Studio 2022:
 ```bash
 cmake -G "Visual Studio 17 2022" -A x64 . -B build
