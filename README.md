@@ -25,6 +25,8 @@ cmake -G "Unix Makefiles" -B build
 cmake --build build
 ```
 
+## Note on Module Dependencies
+- `SystemInfoProvider.hpp/cpp` require `Logger.hpp/cpp`.
 
 ## Example usage
 
