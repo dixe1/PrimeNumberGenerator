@@ -1,5 +1,5 @@
-#include "Logger.h"
-#include "SystemInfoProvider.h"
+#include "Logger.hpp"
+#include "SystemInfoProvider.hpp"
 #include <iostream>
 #include <thread>
 #include <string>
