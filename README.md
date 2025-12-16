@@ -37,9 +37,10 @@ int main()
 {
   Logger::consoleLoggingEnabled = true;
 
-  Logger::INFO("Application started");
+  Logger::INFO("This is a info");
   Logger::WARNING("This is a warning");
   Logger::ERROR("This is an error");
+  Logger::DEBUG("This is a debug");
 }
 ```
 
