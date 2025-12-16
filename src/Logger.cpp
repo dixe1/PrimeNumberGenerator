@@ -8,6 +8,20 @@
 
 namespace Logger
 {
+	std::tm getLocalTime()
+	{
+		std::time_t t = std::time(nullptr);
+		std::tm now{};
+
+	#if defined(_WIN32) || defined(_WIN64)
+		localtime_s(&now, &t);
+	#else
+		localtime_r(&t, &now);
+	#endif
+
+		return now;
+	}
+
 	static std::string getLogLevelString(const LogLevel level)
 	{
 		switch (level)
@@ -35,14 +49,13 @@ namespace Logger
 		std::ofstream logFile(folderPath / "application.log", std::ios::app);
 
 		// Get current time
-		std::time_t t = std::time(nullptr);
-		std::tm* now = std::localtime(&t);
+		std::tm time_ = getLocalTime();
 
 		// Log to console
-		if(consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << stringMessage << message << std::endl;
+		if(consoleLoggingEnabled) std::cout << std::put_time(&time_, "[ %H:%M:%S ]") << stringMessage << message << std::endl;
 
 		// Log to file
-		logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << stringMessage << message << std::endl;
+		logFile << std::put_time(&time_, "[ %Y:%m:%d ] [ %H:%M:%S ]") << stringMessage << message << std::endl;
 	}
 
 	void INFO(const std::string& message) { log(message, LogLevel::INFO); }
