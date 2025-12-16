@@ -1,8 +1,10 @@
 # ProjectTemplate
 A C++17 project template with a Logger module and SystemInfoProvider for quickly starting new projects.
 
-## Build
+## Note on Module Dependencies
+- `SystemInfoProvider.hpp/cpp` require `Logger.hpp/cpp`.
 
+## Build
 
 ### For Visual Studio 2026:
 ```bash
@@ -24,9 +26,6 @@ cmake -G "Visual Studio 16 2019" -A x64 . -B build
 cmake -G "Unix Makefiles" -B build
 cmake --build build
 ```
-
-## Note on Module Dependencies
-- `SystemInfoProvider.hpp/cpp` require `Logger.hpp/cpp`.
 
 ## Example usage
 
