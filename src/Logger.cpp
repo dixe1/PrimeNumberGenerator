@@ -8,9 +8,27 @@
 
 namespace Logger
 {
-
-	static void log(const std::string& message, const LogLevel& level = LogLevel::INFO)
+	static std::string getLogLevelString(const LogLevel level)
 	{
+		switch (level)
+		{
+		case LogLevel::INFO:
+			return " [INFO]: ";
+		case LogLevel::WARNING:
+			return " [WARNING]: ";
+		case LogLevel::ERROR:
+			return " [ERROR]: ";
+		case LogLevel::DEBUG:
+			return " [DEBUG]: ";
+		default:
+			return " [UNKNOWN]: ";
+		}
+	}
+
+	static void log(const std::string& message, const LogLevel logLvl)
+	{
+		std::string stringMessage = getLogLevelString(logLvl);
+
 		// Ensure the logs directory and file exists
 		std::filesystem::path folderPath = "logs";
 		if (!std::filesystem::exists(folderPath)) std::filesystem::create_directory(folderPath);
@@ -20,41 +38,11 @@ namespace Logger
 		std::time_t t = std::time(nullptr);
 		std::tm* now = std::localtime(&t);
 
-		logFile << std::endl;
+		// Log to console
+		if(consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << stringMessage << message << std::endl;
 
-		// Stupid long switch case for logging levels
-		// For now it will do
-		switch (level)
-		{
-		case LogLevel::INFO:
-			// Log to console
-			if(consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << "[INFO]: " << message << std::endl;
-
-			// Log to file
-			logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << "[INFO]: " << message << std::endl;
-			break;
-		case LogLevel::WARNING:
-			// Log to console
-			if (consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << "[WARNING]: " << message << std::endl;
-
-			//log to file
-			logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << "[WARNING]: " << message << std::endl;
-			break;
-		case LogLevel::ERROR:
-			// Log to console
-			if (consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << "[ERROR]: " << message << std::endl;
-
-			// Log to file
-			logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << "[ERROR]: " << message << std::endl;
-			break;
-		case LogLevel::DEBUG:
-			// Log to console
-			if (consoleLoggingEnabled) std::cout << std::put_time(now, "[ %H:%M:%S ]") << "[DEBUG]: " << message << std::endl;
-
-			// Log to file
-			logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << "[DEBUG]: " << message << std::endl;
-			break;
-		}
+		// Log to file
+		logFile << std::put_time(now, "[ %Y:%m:%d ] [ %H:%M:%S ]") << stringMessage << message << std::endl;
 	}
 
 	void INFO(const std::string& message) { log(message, LogLevel::INFO); }
