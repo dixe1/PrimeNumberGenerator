@@ -31,7 +31,7 @@ cmake --build build
 
 ### Logger
 ```cpp
-#include "Logger.h"
+#include "Logger.hpp"
 
 int main()
 {
@@ -45,7 +45,7 @@ int main()
 
 ### SystemInfoProvider
 ```cpp
-#include "SystemInfoProvider.h"
+#include "SystemInfoProvider.hpp"
 #include <iostream>
 
 int main()
