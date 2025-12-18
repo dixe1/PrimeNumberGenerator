@@ -1,6 +1,5 @@
 #include "Logger.hpp"
 #include "SystemInfoProvider.hpp"
-#include <iostream>
 #include <thread>
 #include <string>
 
@@ -9,10 +8,10 @@ namespace SystemInfoProvider
 	SystemInfo get()
 	{
 		// Detect number of threads
-		uint32_t threads{ std::thread::hardware_concurrency() };
-		if(threads == 0 || threads == UINT32_MAX)
+		uint32_t threadsCount{ std::thread::hardware_concurrency() };
+		if(threadsCount == 0)
 		{
-			threads = 1; // set to 1 if unable to detect
+			threadsCount = 1; // set to 1 if unable to detect
 			Logger::WARNING("Unable to detect number of hardware threads, defaulting to 1.");
 		}
 
@@ -23,7 +22,7 @@ namespace SystemInfoProvider
 		OSName os = OSName::LINUX;
 		#endif
 
-		return SystemInfo{ threads,os };
+		return SystemInfo{ threadsCount,os };
 	}
 
 	std::string getOSNameString(const OSName& os)

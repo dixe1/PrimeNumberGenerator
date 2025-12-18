@@ -9,7 +9,7 @@ int main()
 
 	// Example usage of Logger and SystemInfoProvider
 	Logger::consoleLoggingEnabled = true;
-	Logger::INFO("Application started with " + std::to_string(info.threads) + " threads available.");
+	Logger::INFO("Application started with " + std::to_string(info.threadsCount) + " threads available.");
 	Logger::INFO("Operating System: " + SystemInfoProvider::getOSNameString(info.osName));
 }
 
