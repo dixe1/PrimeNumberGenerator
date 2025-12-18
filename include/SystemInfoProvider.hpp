@@ -9,7 +9,7 @@ enum class OSName
 
 struct SystemInfo
 {
-	int threads;
+	uint32_t threads;
 	OSName osName;
 };
 

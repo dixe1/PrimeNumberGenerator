@@ -9,8 +9,8 @@ namespace SystemInfoProvider
 	SystemInfo get()
 	{
 		// Detect number of threads
-		int threads = std::thread::hardware_concurrency();
-		if(threads <= 0)
+		uint32_t threads{ std::thread::hardware_concurrency() };
+		if(threads == 0 || threads == UINT32_MAX)
 		{
 			threads = 1; // set to 1 if unable to detect
 			Logger::WARNING("Unable to detect number of hardware threads, defaulting to 1.");
