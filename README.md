@@ -28,3 +28,30 @@ This project contains a small custom library [console_writer](https://github.com
 - CMake 3.25 or newer
 - C++17 compiler
 - Windows 10/11
+
+ ## Build
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/dixe1/PrimeNumberGenerator
+cd PrimeNumberGenerator
+```
+
+### 2. Build Project
+
+#### For Visual Studio 2022:
+```bash
+cmake -G "Visual Studio 17 2022" -A x64 . -B build
+```
+
+#### For Visual Studio 2019:
+```bash
+cmake -G "Visual Studio 16 2019" -A x64 . -B build
+```
+
+#### For Linux / macOS (Unix Makefiles):
+```bash
+cmake -G "Unix Makefiles" -B build
+cmake --build build
+```
+
