@@ -17,12 +17,12 @@ namespace SystemInfoProvider
 
 		// Detect OS
 		#if defined(_WIN32) || defined(_WIN64)
-		OSName os = OSName::WINDOWS;
+		OSName osName = OSName::WINDOWS;
 		#else
-		OSName os = OSName::LINUX;
+		OSName osName = OSName::LINUX;
 		#endif
 
-		return SystemInfo{ threadsCount,os };
+		return SystemInfo{ threadsCount,osName };
 	}
 
 	std::string getOSNameString(const OSName& os)
