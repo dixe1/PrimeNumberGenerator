@@ -50,6 +50,10 @@ int64_t getUserInput()
 }
 void handleNumbers(std::vector<uint64_t>& primes, const int64_t limit)
 {
+	if (limit >= 2)
+		// Adding 2 because for is starting from 3
+		primes.emplace_back(2);
+
 	// Start from 3 and add 2 to skip even numbers
 	for (int64_t i{3}; i < limit; i+=2)
 	{
