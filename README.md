@@ -1,15 +1,49 @@
-# ProjectTemplate
-A C++17 project template with a Logger module and SystemInfoProvider for quickly starting new projects.
+# Prime Numbers Generator v2.0 - Refactored
 
-## Note on Module Dependencies
-- `SystemInfoProvider.hpp/cpp` require `Logger.hpp/cpp`.
+![C++](https://img.shields.io/badge/language-C++-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## Build
+A refactored **C++17 terminal program** that generates prime numbers up to a user-defined limit.  
+This version improves on the original with cleaner code, modular structure, colorful animated output, and file saving functionality. Perfect for learning, experimenting, or quickly generating prime numbers.
+
+---
+
+![Main menu](images/1.png)
+![Menu showing generated prime numbers](images/2.png)
+
+---
+
+## Features
+
+- Generate all prime numbers up to a specified limit.
+- Save prime numbers to `primes.txt` (overwrites previous file).
+- Display saved prime numbers in the console.
+- Colorful, animated terminal interface with optional delays.
+- Efficient prime checking and handling of large numbers.
+
+---
+
+## Custom Library
+
+This project contains a small custom library [`console_writer`](https://github.com/dixe1/UsefulFunctions/tree/main/console_writer) for printing text with optional color and per-character delays.  
+Cursor hiding and ANSI colors are used for a clean terminal experience.
+
+---
+
+## Requirements
+
+- CMake 3.25 or newer
+- C++17 compatible compiler
+- Windows 10/11 or Linux/macOS terminal
+
+---
+
+ ## Build
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/dixe1/cpp-project-template
-cd cpp-project-template
+git clone https://github.com/dixe1/PrimeNumberGenerator
+cd PrimeNumberGenerator
 ```
 
 ### 2. Build Project
@@ -29,33 +63,3 @@ cmake -G "Visual Studio 16 2019" -A x64 . -B build
 cmake -G "Unix Makefiles" -B build
 cmake --build build
 ```
-
-
-## Example usage
-
-### Logger
-```cpp
-#include "Logger.hpp"
-
-int main()
-{
-  Logger::consoleLoggingEnabled = true;
-
-  Logger::INFO("This is a info");
-  Logger::WARNING("This is a warning");
-  Logger::ERROR("This is an error");
-  Logger::DEBUG("This is a debug");
-}
-```
-
-### SystemInfoProvider
-```cpp
-#include "SystemInfoProvider.hpp"
-#include <iostream>
-
-int main()
-{
-  SystemInfo info = SystemInfoProvider::get();
-  std::cout << "CPU threads detected: " << info.threads << "\n";
-  std::cout << "Operating System: " << SystemInfoProvider::getOSNameString(info.osName) << "\n";
-}
