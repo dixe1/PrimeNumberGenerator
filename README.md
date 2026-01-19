@@ -3,7 +3,7 @@
 ![C++](https://img.shields.io/badge/language-C++-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-A refactored **C++17 terminal program** that generates prime numbers up to a user-defined limit.  
+A refactored C++17 terminal program that generates prime numbers up to a user-defined limit.
 This version improves on the original with cleaner code, modular structure, colorful animated output, and file saving functionality. Perfect for learning, experimenting, or quickly generating prime numbers.
 ---
 
@@ -12,7 +12,6 @@ This version improves on the original with cleaner code, modular structure, colo
 - Generate all prime numbers up to a specified limit.
 - Save prime numbers to `primes.txt` (overwrites previous file).
 - Display saved prime numbers in the console.
-- Colorful, animated terminal interface with optional delays.
 - Efficient prime checking and handling of large numbers.
 
 ---
