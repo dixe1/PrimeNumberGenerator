@@ -1,4 +1,13 @@
 #pragma once
 
-#include "Logger.hpp"
-#include "SystemInfoProvider.hpp"
+#include "clearTerminal.h"
+#include "console_writer.h"
+
+#include  <iostream>
+#include  <cstdint>
+#include  <string>
+#include  <cctype>
+#include  <algorithm>
+#include  <cmath>
+#include  <vector>
+#include  <fstream>
