@@ -3,23 +3,33 @@
 // cpp 17
 
 void printMenu();
-int64_t getUserInput();
-void handleNumbers(std::vector<uint64_t>& primes, int64_t limit);
-bool isPrime(int64_t number);
-void savePrimesToFile(const std::vector<uint64_t>& primes);
+uint64_t getUserInput();
+void handleNumbers(std::vector<uint64_t>&, uint64_t, std::atomic<uint64_t>&);
+bool isPrime(uint64_t);
+void savePrimesToFile(const std::vector<uint64_t>&);
+void loadingScreen(const std::atomic<uint64_t>&, uint64_t);
 
 int main()
 {
-	// Vector for storage prime Numbers
-	std::vector<uint64_t> primes;
+	std::vector<uint64_t> primes;		// Vector for storage prime Numbers
+	std::vector<std::thread> threads;	// Vector for storage threads objects
+	std::atomic<uint64_t> index{};
 
 	printMenu();
 	consoleTools::write("Please enter an integer\n",32,0,0);
-	handleNumbers(primes,getUserInput());
-	savePrimesToFile(primes);
 
-	for (const auto& prime : primes)
-		std::cout << prime << '\n';
+
+	// Start generating
+	const uint64_t userInput {getUserInput()};
+	threads.emplace_back(handleNumbers, std::ref(primes), userInput, std::ref(index));
+	threads.emplace_back(loadingScreen, std::ref(index), userInput);
+
+	for (auto& thread : threads)
+		thread.join();
+
+	savePrimesToFile(primes);
+	localTools::clearTerm();
+	consoleTools::write("Prime numbers saved to primes.txt\n",32,0,0);
 }
 
 void printMenu()
@@ -27,7 +37,7 @@ void printMenu()
 	consoleTools::write("Prime numbers generator v2.0\n",32,0,0);
 	consoleTools::write("============================\n",90,0,0);
 }
-int64_t getUserInput()
+uint64_t getUserInput()
 {
 	while (true)
 	{
@@ -41,31 +51,40 @@ int64_t getUserInput()
 			// String can't be converted
 			consoleTools::write("invalid input:\n",31,0,0);
 			continue;
-		}else
+		}
+		else
 		{
 			// String can be converted
-			return std::stoll(input);
+			const uint64_t inputNumber = std::stoll(input);
+			if (inputNumber >= 150000000)
+			{
+				consoleTools::write("warning: number is very huge this may take a while:\n",31,0,0);
+				consoleTools::write("press enter to continue\n",90,0,0);
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cin.get();
+			}
+			return inputNumber;
 		}
 	}
 }
-void handleNumbers(std::vector<uint64_t>& primes, const int64_t limit)
+void handleNumbers(std::vector<uint64_t>& primes, const uint64_t limit, std::atomic<uint64_t>& index)
 {
 	if (limit >= 2)
 		// Adding 2 because for is starting from 3
 		primes.emplace_back(2);
 
 	// Start from 3 and add 2 to skip even numbers
-	for (int64_t i{3}; i < limit; i+=2)
+	for (index = 3; index < limit; index+=2)
 	{
 		// if number is prime add to vector
-		if (isPrime(i))
-			primes.emplace_back(i);
+		if (isPrime(index))
+			primes.emplace_back(index);
 	}
 }
-bool isPrime(const int64_t number)
+bool isPrime(const uint64_t number)
 {
-	double sq{ sqrt(number) };
-	for (int64_t i = 2; i <= sq; i++) {
+	const double sq{ sqrt(number) };
+	for (uint64_t i{2}; i <= sq; i++) {
 		if (number % i == 0) return false;
 	}
 	return true;
@@ -81,14 +100,17 @@ void savePrimesToFile(const std::vector<uint64_t>& primes)
 	}
 	for (uint64_t i{}; i < primes.size(); i++)
 	{
-		file << i << ". " << primes.at(i) << '\n';
+		file << i << ".  " << primes.at(i) << '\n';
+	}
+}
+void loadingScreen(const std::atomic<uint64_t>& index, const uint64_t userInput)
+{
+	while (index <= userInput)
+	{
+		localTools::clearTerm();
+		consoleTools::write("calculating...\n",32,0,0);
+		std::cout << index << " / " << userInput << '\n';
+		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 	}
 }
 // Template from: https://github.com/dixe1/cpp-project-template
-
-/*
- * 90 -> gray
- *
- * to do
- * 1.change name generateNumbers
- */

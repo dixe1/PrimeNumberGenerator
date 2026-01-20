@@ -11,3 +11,6 @@
 #include  <cmath>
 #include  <vector>
 #include  <fstream>
+#include  <thread>
+#include  <chrono>
+#include  <atomic>
