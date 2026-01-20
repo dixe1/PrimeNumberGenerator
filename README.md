@@ -5,6 +5,7 @@
 
 A refactored C++17 terminal program that generates prime numbers up to a user-defined limit.
 This version improves on the original with cleaner code, modular structure, colorful animated output, and file saving functionality. Perfect for learning, experimenting, or quickly generating prime numbers.
+- This version has support for Linux
 ---
 
 ## Features
