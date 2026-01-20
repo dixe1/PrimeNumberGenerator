@@ -19,17 +19,24 @@ int main()
 	consoleTools::write("Please enter an integer\n",32,0,0);
 
 
-	// Start generating
+	// Getting user input
 	const uint64_t userInput {getUserInput()};
+
+	// Start generating
+	const auto startTime = std::chrono::high_resolution_clock::now();
 	threads.emplace_back(handleNumbers, std::ref(primes), userInput, std::ref(index));
 	threads.emplace_back(loadingScreen, std::ref(index), userInput);
 
 	for (auto& thread : threads)
 		thread.join();
 
+	const auto endTime = std::chrono::high_resolution_clock::now();
+	auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+
 	savePrimesToFile(primes);
 	localTools::clearTerm();
 	consoleTools::write("Prime numbers saved to primes.txt\n",32,0,0);
+	std::cout << "Completed in: " << static_cast<float>(duration.count())/1000 << " seconds\n";
 }
 
 void printMenu()
